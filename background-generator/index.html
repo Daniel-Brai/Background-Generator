@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Different Background Generator</title>
+</head>
+<body>
+
+<div class="container">
+    <p class="currentColor">grey</p>
+    <button class="changeBtn" onclick="changeBtn()">Click me to change background</button>
+</div>
+
+<script>
+    const container = document.querySelector('.container');
+    const btn = document.querySelector('.changeBtn')
+    const currentColor = document.querySelector('.currentColor')
+
+    let colours = ['red','blue','yellow','green','orange','purple','pink']
+    let colored = colours.length
+
+    function changeBtn() {
+        let colorRandom = Math.floor((Math.random() * colored) + 1)
+
+        // checking if the colours is already called
+        container.style.background = colours[colorRandom]
+
+        for (let i = 0; i < colored; i++) {
+            if (colours[colorRandom] == colours[i]) {
+                currentColor.innerHTML = `${colours[colorRandom]}`
+            }
+        }
+
+        container.classList.toggle('pageTransition')
+
+    }
+
+</script>
+</body>
+
+<style>
+    *, *::before, *::after {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center ;
+        justify-content: center;
+        background: grey;
+        height: 100vh;
+        row-gap: 32px;
+    }
+    .currentColor {
+        /*background-color: #f7f7f7;*/
+        padding: 0.5em 0.75em;
+        font-size: 2.2em;
+        text-transform: uppercase;
+        border-radius: 10px;
+        font-family: "Roboto Mono";
+        color: #fff;
+
+    }
+    .changeBtn {
+        apperance:none;
+        padding: 1em;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        width: fit-content;
+        font-size: 0.8em;
+    }
+    .changeBtn:focus, .changeBtn:hover{
+        background: antiquewhite;
+    }
+    /* JS Add-on*/
+    .pageTransition {
+        transition: all 0.5s ease-in-out 0.1s;
+    }
+
+</style>
+</html>
